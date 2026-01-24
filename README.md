@@ -36,7 +36,7 @@ A modern, responsive website for the NCC (Niter Computer Club) Cyber Workshop 20
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/mdhabibullahmahmudncs13/NCC-Cyber-Workshop-website
 cd ncc-cyber-workshop-2025
 ```
 
