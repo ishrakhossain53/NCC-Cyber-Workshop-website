@@ -31,9 +31,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       if (currentUser) {
         console.log('AuthProvider: Fetching user data from database...')
-        const userData = await databaseService.getUser(currentUser.$id)
-        console.log('AuthProvider: User data from database:', userData)
-        setUser(userData as unknown as User)
+        try {
+          const userData = await databaseService.getUser(currentUser.$id)
+          console.log('AuthProvider: User data from database:', userData)
+          setUser(userData as unknown as User)
+        } catch (dbError) {
+          console.error('AuthProvider: Failed to fetch user data from database:', dbError)
+          // User exists in auth but not in database - this is okay for new users
+          setUser(null)
+        }
       } else {
         console.log('AuthProvider: No current user found')
         setUser(null)

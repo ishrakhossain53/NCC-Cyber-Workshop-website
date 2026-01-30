@@ -105,10 +105,10 @@ export function HeroMatrix() {
             {registrationOpen ? (
               <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link href="/register">
-                  <Button size="lg" className="matrix-button px-8 py-4 text-lg font-semibold font-mono rounded-lg transition-all duration-300 hover:scale-105 hover:animate-matrix-glow transform active:scale-95 group">
-                    [REGISTER_NOW] - ৳100
+                    <Button size="lg" className="matrix-button px-8 py-4 text-lg font-semibold font-mono rounded-lg transition-all duration-300 hover:scale-105 hover:animate-matrix-glow transform active:scale-95 group">
+                    [REGISTER_NOW] - <span className="line-through">৳100</span> <span className="text-green-300">FREE</span>
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Button>
+                    </Button>
                 </Link>
                 
                 
@@ -142,8 +142,8 @@ export function HeroMatrix() {
                     <Calendar className={`h-6 w-6 text-green-400 mt-1 flex-shrink-0 transition-transform duration-300 ${hoveredCard === 0 ? 'scale-110 rotate-12' : ''}`} />
                     <div>
                       {/* <h4 className="font-semibold matrix-text font-mono">September 13, 2025</h4> */}
-                      <h4 className="font-semibold matrix-text font-mono">Date will be Announced soon...</h4> 
-                      <p className="text-green-400 text-sm font-mono">9:00 AM - 6:00 PM</p>
+                      <h4 className="font-semibold matrix-text font-mono"> Time And Data</h4> 
+                      <p className="text-green-400 text-sm font-mono">8:00 PM - 11:00 PM, 2-FEB-2026</p>
                     </div>
                   </div>
                   
@@ -155,8 +155,9 @@ export function HeroMatrix() {
                   >
                     <MapPin className={`h-6 w-6 text-green-400 mt-1 flex-shrink-0 transition-transform duration-300 ${hoveredCard === 1 ? 'scale-110 animate-bounce' : ''}`} />
                     <div>
-                      <h4 className="font-semibold matrix-text font-mono">will be Announced soon...</h4>
-                      <p className="text-green-400 text-sm font-mono">will be Announced soon...</p>
+                      <h4 className="font-semibold matrix-text font-mono">Platform</h4>
+                      <p className="text-green-400 text-sm font-mono"> Facebook,Google Meet
+                       </p>
                     </div>
                   </div>
                   
@@ -168,7 +169,9 @@ export function HeroMatrix() {
                   >
                     <Shield className={`h-6 w-6 text-green-400 mt-1 flex-shrink-0 transition-transform duration-300 ${hoveredCard === 2 ? 'scale-110 rotate-12' : ''}`} />
                     <div>
-                      <h4 className="font-semibold matrix-text font-mono">Only ৳100</h4>
+                      <h4 className="font-semibold matrix-text font-mono">
+                      <span className="line-through">৳100</span> <span className="text-green-300">FREE</span>
+                      </h4>
                       <p className="text-green-400 text-sm font-mono">Certificate & Materials Included</p>
                     </div>
                   </div>

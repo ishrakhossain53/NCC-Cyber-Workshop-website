@@ -74,6 +74,7 @@ export const authService = {
     try {
       return await account.get();
     } catch (error) {
+      console.log('No active session found:', error);
       return null;
     }
   },
