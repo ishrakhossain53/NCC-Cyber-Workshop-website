@@ -120,7 +120,7 @@ export function HeroMatrix() {
                   <Clock className="h-5 w-5" />
                   <span className="text-lg font-semibold">[REGISTRATION_GOING_ON]</span>
                 </div>
-                <p className="text-green-400 font-mono">{"> Registration open now! Workshop: February 15, 2025"}</p>
+                <p className="text-green-400 font-mono">{"> Registration open now! Workshop: February 02, 2026"}</p>
               </div>
             )}
           </div>

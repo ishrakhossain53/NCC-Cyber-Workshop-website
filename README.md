@@ -1,19 +1,34 @@
-# NCC Cyber Workshop 2025 Website
+# NCC Cyber Workshop 2026 Website
 
-A modern, responsive website for the NCC (Niter Computer Club) Cyber Workshop 2025 built with Next.js, Appwrite, and Tailwind CSS.
+A modern, responsive website for the NCC (Niter Computer Club) Cyber Workshop 2026 built with Next.js, Appwrite, and Tailwind CSS.
 
-**Status**: ✅ Build Fixed - Deployment Ready
+**Status**: ✅ Production Ready - Free Registration Active
 
 ## 🚀 Features
 
 - **Modern Design**: Cybersecurity-themed UI with dark mode and neon accents
 - **Responsive**: Mobile-first design that works on all devices
 - **Authentication**: Secure user registration and login with email verification
-- **Workshop Registration**: Complete registration system with payment tracking
-- **Payment Integration**: bKash/Nagad payment submission with screenshot upload
+- **Free Registration**: Simplified registration system without payment requirements
+- **File Upload**: Profile picture and document upload capabilities
 - **Admin Panel**: Comprehensive admin dashboard for user and registration management
 - **Real-time Updates**: Dynamic content and status updates
-- **SEO Optimized**: Built with Next.js 13+ App Router for optimal performance
+- **SEO Optimized**: Built with Next.js 14+ App Router for optimal performance
+
+## 🆕 Recent Updates (January 2026)
+
+### ✅ Major Changes
+- **FREE Registration**: Workshop is now completely free - no payment required
+- **Updated Dates**: Workshop moved to February 02, 2026
+- **Simplified Flow**: Removed all payment-related forms and verification steps
+- **Immediate Access**: Event details available immediately after registration
+- **Updated UI**: All payment references removed from interface
+
+### 🔄 Migration Notes
+- Existing payment-related code is commented out for future reference
+- Registration status now shows "Registered/Not Registered" instead of payment status
+- FAQ updated to reflect free registration
+- Admin panel simplified to focus on registration management
 
 ## 🛠 Tech Stack
 
@@ -37,7 +52,7 @@ A modern, responsive website for the NCC (Niter Computer Club) Cyber Workshop 20
 
 ```bash
 git clone https://github.com/mdhabibullahmahmudncs13/NCC-Cyber-Workshop-website
-cd ncc-cyber-workshop-2025
+cd NCC-Cyber-Workshop-website
 ```
 
 ### 2. Install Dependencies
@@ -72,8 +87,8 @@ NEXT_PUBLIC_INSTRUCTORS_COLLECTION_ID=instructors
 NEXT_PUBLIC_SUPPORT_STAFF_COLLECTION_ID=support_staff
 
 # App Configuration
-NEXT_PUBLIC_APP_NAME="NCC Cyber Workshop 2025"
-NEXT_PUBLIC_REGISTRATION_FEE=100
+NEXT_PUBLIC_APP_NAME="NCC Cyber Workshop 2026"
+NEXT_PUBLIC_REGISTRATION_FEE=0
 NEXT_PUBLIC_PAYMENT_NUMBER=01784275877
 ```
 
@@ -120,7 +135,7 @@ src/
 The application uses the following Appwrite collections:
 
 1. **Users**: User profiles and authentication data
-2. **Workshop Registrations**: Registration and payment tracking
+2. **Workshop Registrations**: Registration tracking (payment-free)
 3. **Instructors**: Workshop instructor information
 4. **Support Staff**: Support team information
 
@@ -131,12 +146,13 @@ The application uses the following Appwrite collections:
 - Secure session management
 - Password reset functionality
 
-### Payment System
+### Registration System
 
-- Mobile banking integration (bKash/Nagad)
-- Payment screenshot upload
-- Admin verification system
-- Reference code generation
+- Free workshop registration
+- User profile management
+- Registration status tracking
+- Email notifications
+- Event details download
 
 ## 👨‍💻 Development
 
@@ -195,18 +211,18 @@ Ensure all environment variables are set in your production environment. Never c
 ## 📱 Features Overview
 
 ### For Users
-- Workshop registration
-- Payment submission
+- Free workshop registration
 - Profile management
 - Registration status tracking
+- Event details download
 - Email notifications
 
 ### For Admins
 - User management
-- Payment verification
 - Registration analytics
 - Instructor management
 - Support staff management
+- Report generation
 
 ## 🎨 Customization
 
@@ -239,13 +255,13 @@ The cybersecurity theme uses these custom colors (defined in `tailwind.config.js
 
 For support and questions:
 
-- Email: cyber@ncc.org
+- Email: support@ncc.org
 - Phone: 01784275877
-- Documentation: Check the docs folder
+- GitHub Issues: [Create an issue](https://github.com/mdhabibullahmahmudncs13/NCC-Cyber-Workshop-website/issues)
 
 ## 📄 License
 
-This project is created for NCC (Niter Computer Club) Cyber Workshop 2025.
+This project is created for NCC (Niter Computer Club) Cyber Workshop 2026.
 
 ## 🙏 Acknowledgments
 
@@ -257,7 +273,9 @@ This project is created for NCC (Niter Computer Club) Cyber Workshop 2025.
 ---
 
 **Workshop Details:**
-- Date: September 11, 2025
-- Registration: September 6-10, 2025  
-- Fee: 100 TK
-- Payment: bKash/Nagad to 01784275877
+- Date: February 02, 2026
+- Registration: January 30 - February 02, 2026  
+- Fee: FREE
+- Location: Notre Dame College, AD-117
+
+**Current Status:** ✅ Registration is ACTIVE and FREE!

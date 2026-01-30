@@ -149,8 +149,8 @@ export function getStatusColor(status: string) {
 
 export function isRegistrationOpen() {
   const now = new Date();
-  const startDate = new Date('2026-01-01'); // Registration started January 1, 2026
-  const endDate = new Date('2026-02-14'); // Registration ends February 14, 2026 (day before workshop)
+  const startDate = new Date('2026-01-30'); // Registration started January 30, 2026
+  const endDate = new Date('2026-02-02'); // Registration ends February 02, 2026 (same day as workshop)
   endDate.setHours(23, 59, 59, 999); // End of day
   
   return now >= startDate && now <= endDate;
@@ -158,7 +158,7 @@ export function isRegistrationOpen() {
 
 export function getTimeUntilRegistrationEnd() {
   const now = new Date();
-  const endDate = new Date('2026-02-14'); // Updated to match new registration end date
+  const endDate = new Date('2026-02-02'); // Updated to match new registration end date
   endDate.setHours(23, 59, 59, 999);
   
   const diff = endDate.getTime() - now.getTime();
@@ -265,7 +265,7 @@ export const faqData = [
   },
   {
     question: 'What if I miss the registration deadline?',
-    answer: 'Registration closes on February 14, 2026. Late registrations will not be accepted due to limited capacity.'
+    answer: 'Registration closes on February 02, 2026. Late registrations will not be accepted due to limited capacity.'
   },
   {
     question: 'Can I get a refund if I cannot attend?',

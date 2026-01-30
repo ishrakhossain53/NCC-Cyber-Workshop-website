@@ -142,7 +142,7 @@ export function Hero() {
                   >
                     <Calendar className={`h-6 w-6 text-blue-400 mt-1 flex-shrink-0 transition-transform duration-300 ${hoveredCard === 0 ? 'scale-110 rotate-12' : ''}`} />
                     <div>
-                      <h4 className="font-semibold text-white hover:text-blue-400 transition-colors duration-300">February 15, 2026</h4>
+                      <h4 className="font-semibold text-white hover:text-blue-400 transition-colors duration-300">February 02, 2026</h4>
                       <p className="text-gray-400 text-sm">9:00 AM - 4:00 PM</p>
                     </div>
                   </div>
