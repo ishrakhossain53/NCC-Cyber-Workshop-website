@@ -57,7 +57,7 @@ export function QuickOverview() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className={`w-20 h-20 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/50 rounded-lg flex items-center justify-center text-green-400 text-2xl font-bold mx-auto mb-4 transition-all duration-500 ${hoveredCard === 0 ? 'animate-bounce scale-110' : ''}`}>
-              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/68bbafbf001e80d92606/files/68bd7156001170fef882/view?project=68bb9d7800190636a8b2&mode=admin" alt="" className="w-20 h-20 object-contain" />
+              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/workshop_files/files/697ccc0d001966754f71/view?project=697a5945000c528da11f&mode=admin" alt="" className="w-20 h-20 object-contain" />
             </div>
             <h3 className="text-lg font-semibold mb-2 matrix-text group-hover:animate-glow transition-colors duration-300 font-mono">[Shibly Sadik]</h3>
 
@@ -71,7 +71,7 @@ export function QuickOverview() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className={`w-20 h-20 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/50 rounded-lg flex items-center justify-center text-green-400 text-2xl font-bold mx-auto mb-4 transition-all duration-500 ${hoveredCard === 1 ? 'animate-spin scale-110' : ''}`}>
-              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/68bbafbf001e80d92606/files/68beff82eb382e39a22f/view?project=68bb9d7800190636a8b2&mode=admin" alt="" className="w-20 h-20 object-contain" />
+              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/workshop_files/files/697ccc170009f036e224/view?project=697a5945000c528da11f&mode=admin" alt="" className="w-20 h-20 object-contain" />
             </div>
             <h3 className="text-lg font-semibold mb-2 matrix-text group-hover:animate-glow transition-colors duration-300 font-mono">[Khandakar Asif Mahmud]</h3>
             
@@ -85,7 +85,7 @@ export function QuickOverview() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className={`w-20 h-20 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/50 rounded-lg flex items-center justify-center text-green-400 text-2xl font-bold mx-auto mb-4 transition-all duration-500 ${hoveredCard === 0 ? 'animate-bounce scale-110' : ''}`}>
-              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/68bbafbf001e80d92606/files/68bd7a4100102c967d9f/view?project=68bb9d7800190636a8b2&mode=admin" alt="" className="w-20 h-20 object-contain" />
+              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/workshop_files/files/697cc96c001f0caaa52a/view?project=697a5945000c528da11f&mode=admin" alt="" className="w-20 h-20 object-contain" />
             </div>
             <h3 className="text-lg font-semibold mb-2 matrix-text group-hover:animate-glow transition-colors duration-300 font-mono">[Mozammal Hossain Tanvir]</h3>
        
@@ -99,7 +99,7 @@ export function QuickOverview() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className={`w-20 h-20 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/50 rounded-lg flex items-center justify-center text-green-400 text-2xl font-bold mx-auto mb-4 transition-all duration-500 ${hoveredCard === 0 ? 'animate-bounce scale-110' : ''}`}>
-              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/68bbafbf001e80d92606/files/68bf0d49dcd1616aaf6b/view?project=68bb9d7800190636a8b2&mode=admin" alt="" className="w-20 h-20 object-contain" />
+              <img src="https://fra.cloud.appwrite.io/v1/storage/buckets/workshop_files/files/697ccc030015e1544ed5/view?project=697a5945000c528da11f&mode=admin" alt="" className="w-20 h-20 object-contain" />
             </div>
             <h3 className="text-lg font-semibold mb-2 matrix-text group-hover:animate-glow transition-colors duration-300 font-mono">[Apurba Sutradhar]</h3>
            

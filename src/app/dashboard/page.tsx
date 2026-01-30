@@ -115,8 +115,9 @@ export default function DashboardPage() {
     }
 
     if (registrations[0]?.payment_status !== 'verified') {
-      toast.error('Payment must be verified to download Event Details')
-      return
+      // Payment verification removed for free registration
+      // toast.error('Payment must be verified to download Event Details')
+      // return
     }
 
     try {
@@ -158,7 +159,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-sm text-gray-400">Workshop Date</p>
-              <p className="font-semibold text-white">September 11, 2025</p>
+              <p className="font-semibold text-white">February 02, 2026</p>
             </div>
           </div>
         </div>
@@ -169,9 +170,9 @@ export default function DashboardPage() {
               <CreditCard className="h-6 w-6 text-purple-400" />
             </div>
             <div>
-              <p className="text-sm text-gray-400">Payment Status</p>
-              <p className={`font-semibold ${isRegistered && registrations[0]?.payment_status === 'verified' ? 'text-green-400' : 'text-yellow-400'}`}>
-                {isRegistered ? (registrations[0]?.payment_status === 'verified' ? 'Verified' : 'Pending') : 'Not Registered'}
+              <p className="text-sm text-gray-400">Registration Status</p>
+              <p className={`font-semibold ${isRegistered ? 'text-green-400' : 'text-yellow-400'}`}>
+                {isRegistered ? 'Registered' : 'Not Registered'}
               </p>
             </div>
           </div>
@@ -247,7 +248,8 @@ export default function DashboardPage() {
                       )}
                     </div>
 
-                    {registration.payment_status === 'pending' && (
+                    {/* Payment section hidden for free registration */}
+                    {false && registration.payment_status === 'pending' && (
                       <Button
                         size="sm"
                         className="mt-4"
@@ -296,15 +298,15 @@ export default function DashboardPage() {
                 size="sm"
                 className="w-full bg-gradient-to-r from-cyber-blue to-cyber-green hover:from-blue-600 hover:to-green-600 text-black font-medium"
                 onClick={handleDownloadEventID}
-                disabled={!isRegistered || registrations[0]?.payment_status !== 'verified'}
+                disabled={!isRegistered}
               >
                 <IdCard className="h-4 w-4 mr-2" />
                 Download Event Details
               </Button>
               
-              {(!isRegistered || registrations[0]?.payment_status !== 'verified') && (
+              {!isRegistered && (
                 <p className="text-xs text-gray-400 text-center">
-                  {!isRegistered ? 'Registration required' : 'Payment verification required'}
+                  Registration required
                 </p>
               )}
             </div>
@@ -312,8 +314,8 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Payment Form Modal */}
-      {showPaymentForm && (
+      {/* Payment Form Modal - Hidden for free registration */}
+      {false && showPaymentForm && (
         <PaymentForm
           onClose={() => setShowPaymentForm(false)}
           onSuccess={() => {

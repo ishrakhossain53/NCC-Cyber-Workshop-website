@@ -149,8 +149,8 @@ export function getStatusColor(status: string) {
 
 export function isRegistrationOpen() {
   const now = new Date();
-  const startDate = new Date('2025-09-06');
-  const endDate = new Date('2025-09-12'); // Extended to Sep 12 for Sep 13 workshop
+  const startDate = new Date('2026-01-01'); // Registration started January 1, 2026
+  const endDate = new Date('2026-02-14'); // Registration ends February 14, 2026 (day before workshop)
   endDate.setHours(23, 59, 59, 999); // End of day
   
   return now >= startDate && now <= endDate;
@@ -158,7 +158,7 @@ export function isRegistrationOpen() {
 
 export function getTimeUntilRegistrationEnd() {
   const now = new Date();
-  const endDate = new Date('2025-09-12'); // Updated to match new registration end date
+  const endDate = new Date('2026-02-14'); // Updated to match new registration end date
   endDate.setHours(23, 59, 59, 999);
   
   const diff = endDate.getTime() - now.getTime();
@@ -245,11 +245,11 @@ export const faqData = [
   },
   {
     question: 'What is the registration fee?',
-    answer: 'The registration fee is 100 TK, which includes workshop materials, lunch, and a certificate of participation.'
+    answer: 'The workshop is completely FREE! This includes workshop materials, lunch, and a certificate of participation.'
   },
   {
     question: 'How do I make the payment?',
-    answer: 'Payment can be made through bKash or Nagad to 01784275877. Use the reference format NCC-[YOUR_USER_ID] and submit the transaction details through the payment form.'
+    answer: 'No payment required! The workshop is completely free. Just register and attend.'
   },
   {
     question: 'What should I bring to the workshop?',
@@ -265,7 +265,7 @@ export const faqData = [
   },
   {
     question: 'What if I miss the registration deadline?',
-    answer: 'Registration closes on September 10, 2025. Late registrations will not be accepted due to limited capacity.'
+    answer: 'Registration closes on February 14, 2026. Late registrations will not be accepted due to limited capacity.'
   },
   {
     question: 'Can I get a refund if I cannot attend?',

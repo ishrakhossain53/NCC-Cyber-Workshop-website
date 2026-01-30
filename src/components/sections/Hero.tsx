@@ -102,7 +102,7 @@ export function Hero() {
               <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link href="/register">
                   <Button size="lg" className="matrix-button px-8 py-4 text-lg font-semibold font-mono rounded-lg transition-all duration-300 hover:scale-105 hover:animate-matrix-glow transform active:scale-95 group">
-                    [REGISTER_NOW] - ৳100
+                    [REGISTER_NOW] - FREE
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
                 </Link>
@@ -121,7 +121,7 @@ export function Hero() {
                   <Clock className="h-5 w-5" />
                   <span className="text-lg font-semibold">[REGISTRATION_CLOSED]</span>
                 </div>
-                <p className="text-green-400 font-mono">{"> Registration was open from September 6-10, 2025"}</p>
+                <p className="text-green-400 font-mono">{"> Registration period has ended. Next workshop coming soon!"}</p>
               </div>
             )}
           </div>
@@ -142,7 +142,7 @@ export function Hero() {
                   >
                     <Calendar className={`h-6 w-6 text-blue-400 mt-1 flex-shrink-0 transition-transform duration-300 ${hoveredCard === 0 ? 'scale-110 rotate-12' : ''}`} />
                     <div>
-                      <h4 className="font-semibold text-white hover:text-blue-400 transition-colors duration-300">September 11, 2025</h4>
+                      <h4 className="font-semibold text-white hover:text-blue-400 transition-colors duration-300">February 15, 2026</h4>
                       <p className="text-gray-400 text-sm">9:00 AM - 4:00 PM</p>
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export function Hero() {
                   >
                     <Shield className={`h-6 w-6 text-purple-400 mt-1 flex-shrink-0 transition-transform duration-300 ${hoveredCard === 2 ? 'scale-110 rotate-12' : ''}`} />
                     <div>
-                      <h4 className="font-semibold text-white hover:text-purple-400 transition-colors duration-300">Only ৳100</h4>
+                      <h4 className="font-semibold text-white hover:text-purple-400 transition-colors duration-300">FREE Registration</h4>
                       <p className="text-gray-400 text-sm">Certificate & Materials Included</p>
                     </div>
                   </div>
@@ -176,8 +176,8 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Payment Info */}
-            {registrationOpen && (
+            {/* Payment Info - Hidden for now */}
+            {false && registrationOpen && (
               <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-6 hover:from-blue-500/20 hover:to-purple-500/20 hover:border-blue-400/40 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20">
                 <h4 className="font-semibold text-white mb-3 hover:text-blue-400 transition-colors duration-300">Quick Payment</h4>
                 <p className="text-gray-300 text-sm mb-2">Send ৳100 via bKash/Nagad:</p>

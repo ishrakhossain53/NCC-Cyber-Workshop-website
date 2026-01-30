@@ -96,7 +96,7 @@ export function HeroMatrix() {
               </div>
               <div className="flex items-center space-x-2 hover:text-green-400 transition-colors duration-300 cursor-pointer group matrix-border p-2 rounded">
                 <Clock className="h-5 w-5 text-green-400 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-green-300">[7_HOURS]</span>
+                <span className="text-green-300">[3_HOURS]</span>
               </div>
             </div>
             
@@ -116,11 +116,11 @@ export function HeroMatrix() {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center space-x-2 text-red-400 animate-pulse font-mono matrix-border p-3 rounded">
+                <div className="flex items-center space-x-2 text-green-400 animate-pulse font-mono matrix-border p-3 rounded">
                   <Clock className="h-5 w-5" />
-                  <span className="text-lg font-semibold">[REGISTRATION_POSTPONED]</span>
+                  <span className="text-lg font-semibold">[REGISTRATION_GOING_ON]</span>
                 </div>
-                {/* <p className="text-green-400 font-mono">{"> Registration open until September 12, 2025. Workshop: September 13, 2025"}</p> */}
+                <p className="text-green-400 font-mono">{"> Registration open now! Workshop: February 15, 2025"}</p>
               </div>
             )}
           </div>
@@ -143,7 +143,7 @@ export function HeroMatrix() {
                     <div>
                       {/* <h4 className="font-semibold matrix-text font-mono">September 13, 2025</h4> */}
                       <h4 className="font-semibold matrix-text font-mono"> Time And Data</h4> 
-                      <p className="text-green-400 text-sm font-mono">8:00 PM - 11:00 PM, 2-FEB-2026</p>
+                      <p className="text-green-400 text-sm font-mono">8:00 PM - 11:00 PM, FEB 02, 2026</p>
                     </div>
                   </div>
                   
@@ -193,8 +193,8 @@ export function HeroMatrix() {
             </ul>
           </div>
 
-            {/* Payment Info */}
-            {registrationOpen && (
+            {/* Payment Info - Hidden for now */}
+            {false && registrationOpen && (
               <div className="matrix-card p-6 hover:animate-matrix-glow transition-all duration-500 hover:scale-105">
                 <h4 className="font-semibold matrix-text mb-3 font-mono">[PAYMENT_INFO.dat]</h4>
                 <p className="text-green-300 text-sm mb-2 font-mono">{"> Send ৳100 via bKash/Nagad:"}</p>
