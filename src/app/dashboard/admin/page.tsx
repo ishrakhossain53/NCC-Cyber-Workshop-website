@@ -304,6 +304,134 @@ export default function AdminDashboard() {
           </div>
         )}
 
+        {activeTab === 'registrations' && (
+          <div className="bg-dark-200 border border-gray-700 rounded-xl overflow-hidden">
+            <div className="p-6 border-b border-gray-700">
+              <h3 className="text-lg font-bold text-white">All Registrations</h3>
+              <p className="text-gray-400 text-sm mt-1">View and manage workshop registrations</p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-dark-300">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      User Details
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      Registration Info
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      Workshop Type
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-700">
+                  {registrations.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="px-6 py-8 text-center">
+                        <div className="text-gray-400">
+                          <Shield className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                          <p className="text-lg font-medium">No registrations yet</p>
+                          <p className="text-sm">Registrations will appear here once users start signing up</p>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    registrations.map((registration) => {
+                      const user = users.find(u => u.$id === registration.user_id)
+                      return (
+                        <tr key={registration.$id} className="hover:bg-dark-300/50">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div>
+                              <div className="text-sm font-medium text-white">{user?.name || 'Unknown User'}</div>
+                              <div className="text-sm text-gray-400">{user?.email}</div>
+                              <div className="text-xs text-gray-500">{user?.student_id}</div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="text-sm text-white">
+                              <div>Registered: {formatDateTime(registration.registration_date)}</div>
+                              <div className="text-gray-400">ID: {registration.$id.slice(-8)}</div>
+                              {user?.institution && (
+                                <div className="text-gray-500 text-xs">{user.institution}</div>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="px-2 py-1 bg-cyber-blue/20 text-cyber-blue border border-cyber-blue/30 rounded-full text-xs font-medium">
+                              {registration.workshop_type || 'Complete Workshop'}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="space-y-1">
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(user?.registration_status || 'pending')}`}>
+                                User: {user?.registration_status || 'pending'}
+                              </span>
+                              <br />
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(registration.payment_status)}`}>
+                                Payment: {registration.payment_status}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                            <div className="flex space-x-2">
+                              {user?.registration_status === 'pending' && (
+                                <>
+                                  <button
+                                    onClick={() => updateUserStatus(user.$id, 'verified')}
+                                    className="text-green-400 hover:text-green-300 p-1 rounded"
+                                    title="Verify User"
+                                  >
+                                    <Check className="h-4 w-4" />
+                                  </button>
+                                  <button
+                                    onClick={() => updateUserStatus(user.$id, 'rejected')}
+                                    className="text-red-400 hover:text-red-300 p-1 rounded"
+                                    title="Reject User"
+                                  >
+                                    <X className="h-4 w-4" />
+                                  </button>
+                                </>
+                              )}
+                              {registration.payment_screenshot_url && (
+                                <button
+                                  onClick={() => window.open(`https://cloud.appwrite.io/v1/storage/buckets/${process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_ID}/files/${registration.payment_screenshot_url}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}&mode=admin`, '_blank')}
+                                  className="text-cyber-blue hover:text-cyber-blue/80 p-1 rounded"
+                                  title="View Payment Screenshot"
+                                >
+                                  <Eye className="h-4 w-4" />
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+            
+            {registrations.length > 0 && (
+              <div className="p-6 border-t border-gray-700 bg-dark-300/50">
+                <div className="flex justify-between items-center text-sm text-gray-400">
+                  <span>Total Registrations: {registrations.length}</span>
+                  <span>
+                    Verified: {registrations.filter(r => users.find(u => u.$id === r.user_id)?.registration_status === 'verified').length} | 
+                    Pending: {registrations.filter(r => users.find(u => u.$id === r.user_id)?.registration_status === 'pending').length}
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {activeTab === 'payments' && (
           <div className="bg-dark-200 border border-gray-700 rounded-xl overflow-hidden">
             <div className="p-6 border-b border-gray-700">
