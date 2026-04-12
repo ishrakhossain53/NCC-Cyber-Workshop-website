@@ -19,8 +19,8 @@ export function InstructorsMatrix() {
       setInstructors(response.documents as unknown as Instructor[])
     } catch (error) {
       console.error('Failed to fetch instructors:', error)
-      // Fallback to static data if database fails
-      setInstructors(fallbackInstructors)
+      // No fallback - show empty state instead
+      setInstructors([])
     } finally {
       setLoading(false)
     }
@@ -43,49 +43,6 @@ export function InstructorsMatrix() {
       return null
     }
   }
-
-  const fallbackInstructors: Instructor[] = [
-    {
-      $id: '1',
-      name: 'MATRIX_ARCHITECT_ALEX',
-      bio: 'ELITE_CYBERSECURITY_EXPERT WITH 10+ YEARS IN THE MATRIX. SPECIALIZED IN BREAKING AND SECURING DIGITAL FORTRESSES. FORMER NSA OPERATIVE TURNED CYBER_GUARDIAN.',
-      expertise: ['PENETRATION_TESTING', 'ETHICAL_HACKING', 'NETWORK_SECURITY', 'MALWARE_ANALYSIS'],
-      profile_image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      social_linkedin: 'https://linkedin.com/in/alex-matrix',
-      social_github: 'https://github.com/alex-matrix',
-      social_twitter: 'https://twitter.com/alex_matrix',
-      social_website: 'https://alexmatrix.dev',
-      created_by: 'system',
-      $createdAt: '2024-01-01T00:00:00.000Z',
-      $updatedAt: '2024-01-01T00:00:00.000Z'
-    },
-    {
-      $id: '2',
-      name: 'CIPHER_SARAH_404',
-      bio: 'DIGITAL_FORENSICS_SPECIALIST AND OSINT_MASTER. TRACKS DIGITAL_FOOTPRINTS THROUGH THE DEEPEST LAYERS OF THE MATRIX. CERTIFIED THREAT_HUNTER.',
-      expertise: ['DIGITAL_FORENSICS', 'OSINT', 'INCIDENT_RESPONSE', 'THREAT_HUNTING'],
-      profile_image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      social_linkedin: 'https://linkedin.com/in/sarah-cipher',
-      social_github: 'https://github.com/sarah-cipher',
-      social_twitter: 'https://twitter.com/cipher_sarah',
-      created_by: 'system',
-      $createdAt: '2024-01-01T00:00:00.000Z',
-      $updatedAt: '2024-01-01T00:00:00.000Z'
-    },
-    {
-      $id: '3',
-      name: 'GHOST_MARCUS_0x1',
-      bio: 'CRYPTOGRAPHY_WIZARD AND BLOCKCHAIN_SECURITY_EXPERT. PROTECTS THE MATRIX FROM QUANTUM_THREATS. PHD IN COMPUTER_SCIENCE WITH FOCUS ON CRYPTOGRAPHIC_PROTOCOLS.',
-      expertise: ['CRYPTOGRAPHY', 'BLOCKCHAIN_SECURITY', 'REVERSE_ENGINEERING', 'SECURE_CODING'],
-      profile_image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      social_linkedin: 'https://linkedin.com/in/marcus-ghost',
-      social_github: 'https://github.com/ghost-marcus',
-      social_website: 'https://ghostmarcus.tech',
-      created_by: 'system',
-      $createdAt: '2024-01-01T00:00:00.000Z',
-      $updatedAt: '2024-01-01T00:00:00.000Z'
-    }
-  ]
 
   if (loading) {
     return (
@@ -134,8 +91,9 @@ export function InstructorsMatrix() {
         </div>
 
         {/* Instructors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {instructors.map((instructor, index) => {
+        {instructors.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {instructors.map((instructor, index) => {
             const imageUrl = getInstructorImageUrl(instructor)
             
             return (
@@ -257,6 +215,21 @@ export function InstructorsMatrix() {
             )
           })}
         </div>
+        ) : (
+          <div className="text-center py-16">
+            <div className="matrix-card p-8 max-w-md mx-auto">
+              <Terminal className="h-16 w-16 text-green-400 mx-auto mb-4 animate-glow" />
+              <h3 className="text-xl font-bold matrix-text mb-2 font-mono">
+                [MATRIX_ARCHITECTS_LOADING...]
+              </h3>
+              <p className="text-green-200 font-mono text-sm">
+                {'>'}CYBER_GUARDIANS_WILL_BE_REVEALED_SOON.
+                <br />
+                {'>'}STAY_TUNED_FOR_UPDATES.
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* CTA */}
         <div className="text-center mt-16">

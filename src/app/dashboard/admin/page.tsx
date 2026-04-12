@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '@/components/providers/AuthProvider'
 import { useRouter } from 'next/navigation'
 import { databaseService } from '@/lib/appwrite'
-import { Users, CreditCard, Shield, Activity, Check, X, Eye, Download, FileText } from 'lucide-react'
+import { Users, CreditCard, Shield, Activity, Check, X, Eye, Download, FileText, FileSpreadsheet, FileJson } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { getStatusColor, formatDateTime } from '@/lib/utils'
 import { downloadPaymentReport, downloadSummaryReport } from '@/lib/pdfGenerator'
@@ -85,6 +85,96 @@ export default function AdminDashboard() {
     }
   }
 
+  const exportUsersToJSON = async () => {
+    try {
+      // Create JSON structure with user data
+      const userData = users.map(user => ({
+        id: user.$id,
+        name: user.name,
+        email: user.email,
+        student_id: user.student_id,
+        institution: user.institution,
+        registration_status: user.registration_status,
+        created_at: user.$createdAt,
+        updated_at: user.$updatedAt
+      }))
+
+      const jsonData = {
+        export_info: {
+          exported_at: new Date().toISOString(),
+          total_users: users.length,
+          export_type: "users_data",
+          workshop: "NCC Cyber Workshop 2026"
+        },
+        users: userData
+      }
+
+      // Convert to JSON string with proper formatting
+      const jsonString = JSON.stringify(jsonData, null, 2)
+      
+      // Create and download the file
+      const blob = new Blob([jsonString], { type: 'application/json;charset=utf-8;' })
+      const link = document.createElement('a')
+      
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob)
+        link.setAttribute('href', url)
+        link.setAttribute('download', `ncc-workshop-users-${new Date().toISOString().split('T')[0]}.json`)
+        link.style.visibility = 'hidden'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        
+        toast.success(`Exported ${users.length} users to JSON`)
+      }
+    } catch (error) {
+      console.error('Failed to export JSON:', error)
+      toast.error('Failed to export JSON file')
+    }
+  }
+
+  const exportUsersToCSV = () => {
+    try {
+      // Create CSV header
+      const csvHeader = 'Name,User ID,Email Address,Student ID,Institution,Registration Status,Created Date\n'
+      
+      // Create CSV rows
+      const csvRows = users.map(user => {
+        const name = `"${user.name || 'N/A'}"`
+        const userId = `"${user.$id || 'N/A'}"`
+        const email = `"${user.email || 'N/A'}"`
+        const studentId = `"${user.student_id || 'N/A'}"`
+        const institution = `"${user.institution || 'N/A'}"`
+        const status = `"${user.registration_status || 'pending'}"`
+        const createdDate = `"${new Date(user.$createdAt).toLocaleDateString() || 'N/A'}"`
+        
+        return `${name},${userId},${email},${studentId},${institution},${status},${createdDate}`
+      }).join('\n')
+      
+      // Combine header and rows
+      const csvContent = csvHeader + csvRows
+      
+      // Create and download the file
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const link = document.createElement('a')
+      
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob)
+        link.setAttribute('href', url)
+        link.setAttribute('download', `ncc-workshop-users-${new Date().toISOString().split('T')[0]}.csv`)
+        link.style.visibility = 'hidden'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        
+        toast.success(`Exported ${users.length} users to CSV`)
+      }
+    } catch (error) {
+      console.error('Failed to export CSV:', error)
+      toast.error('Failed to export CSV file')
+    }
+  }
+
   if (authLoading || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -160,15 +250,15 @@ export default function AdminDashboard() {
             <FileText className="h-6 w-6 text-cyber-blue mr-2" />
             Export Reports
           </h2>
-          <p className="text-gray-400 mb-6">Download comprehensive reports for payment management and analysis</p>
+          <p className="text-gray-400 mb-6">Download comprehensive reports and export user data for analysis and management</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <button
               onClick={() => downloadPaymentReport(registrations, users)}
               className="flex items-center justify-center px-6 py-3 bg-cyber-blue hover:bg-blue-600 transition-colors rounded-lg text-white font-medium"
             >
               <Download className="h-5 w-5 mr-2" />
-              Download Payment Report
+              Payment Report
             </button>
             
             <button
@@ -176,7 +266,25 @@ export default function AdminDashboard() {
               className="flex items-center justify-center px-6 py-3 bg-cyber-green hover:bg-green-600 transition-colors rounded-lg text-white font-medium"
             >
               <Download className="h-5 w-5 mr-2" />
-              Download Summary Report
+              Summary Report
+            </button>
+
+            <button
+              onClick={exportUsersToCSV}
+              className="flex items-center justify-center px-6 py-3 bg-cyber-purple hover:bg-purple-600 transition-colors rounded-lg text-white font-medium"
+              disabled={users.length === 0}
+            >
+              <FileSpreadsheet className="h-5 w-5 mr-2" />
+              Export CSV
+            </button>
+
+            <button
+              onClick={exportUsersToJSON}
+              className="flex items-center justify-center px-6 py-3 bg-orange-500 hover:bg-orange-600 transition-colors rounded-lg text-white font-medium"
+              disabled={users.length === 0}
+            >
+              <FileJson className="h-5 w-5 mr-2" />
+              Export JSON
             </button>
           </div>
         </div>
@@ -234,8 +342,31 @@ export default function AdminDashboard() {
 
         {activeTab === 'users' && (
           <div className="bg-dark-200 border border-gray-700 rounded-xl overflow-hidden">
-            <div className="p-6 border-b border-gray-700">
-              <h3 className="text-lg font-bold text-white">All Users</h3>
+            <div className="p-6 border-b border-gray-700 flex justify-between items-center">
+              <div>
+                <h3 className="text-lg font-bold text-white">All Users</h3>
+                <p className="text-gray-400 text-sm mt-1">Manage user accounts and registration status</p>
+              </div>
+            <div className="flex space-x-2">
+              <Button
+                onClick={exportUsersToCSV}
+                variant="outline"
+                className="bg-cyber-purple/10 border-cyber-purple/30 text-cyber-purple hover:bg-cyber-purple/20"
+                disabled={users.length === 0}
+              >
+                <FileSpreadsheet className="h-4 w-4 mr-2" />
+                CSV
+              </Button>
+              <Button
+                onClick={exportUsersToJSON}
+                variant="outline"
+                className="bg-orange-500/10 border-orange-500/30 text-orange-500 hover:bg-orange-500/20"
+                disabled={users.length === 0}
+              >
+                <FileJson className="h-4 w-4 mr-2" />
+                JSON
+              </Button>
+            </div>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">

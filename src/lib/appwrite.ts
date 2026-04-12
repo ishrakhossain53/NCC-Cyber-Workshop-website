@@ -171,11 +171,34 @@ export const databaseService = {
 
   async getAllUsers(): Promise<any> {
     try {
-      return await databases.listDocuments(
-        config.databaseId,
-        config.collections.users,
-        [Query.orderDesc('$createdAt')]
-      );
+      // Fetch all users with pagination to handle more than 25 users
+      let allUsers: any[] = [];
+      let offset = 0;
+      const limit = 100; // Fetch 100 at a time for efficiency
+      let hasMore = true;
+
+      while (hasMore) {
+        const response = await databases.listDocuments(
+          config.databaseId,
+          config.collections.users,
+          [
+            Query.orderDesc('$createdAt'),
+            Query.limit(limit),
+            Query.offset(offset)
+          ]
+        );
+
+        allUsers = allUsers.concat(response.documents);
+        
+        // Check if there are more documents
+        hasMore = response.documents.length === limit;
+        offset += limit;
+      }
+
+      return {
+        documents: allUsers,
+        total: allUsers.length
+      };
     } catch (error) {
       console.error('Error getting all users:', error);
       throw error;
@@ -212,11 +235,34 @@ export const databaseService = {
 
   async getAllRegistrations() {
     try {
-      return await databases.listDocuments(
-        config.databaseId,
-        config.collections.workshopRegistrations,
-        [Query.orderDesc('$createdAt')]
-      );
+      // Fetch all registrations with pagination to handle more than 25 registrations
+      let allRegistrations: any[] = [];
+      let offset = 0;
+      const limit = 100; // Fetch 100 at a time for efficiency
+      let hasMore = true;
+
+      while (hasMore) {
+        const response = await databases.listDocuments(
+          config.databaseId,
+          config.collections.workshopRegistrations,
+          [
+            Query.orderDesc('$createdAt'),
+            Query.limit(limit),
+            Query.offset(offset)
+          ]
+        );
+
+        allRegistrations = allRegistrations.concat(response.documents);
+        
+        // Check if there are more documents
+        hasMore = response.documents.length === limit;
+        offset += limit;
+      }
+
+      return {
+        documents: allRegistrations,
+        total: allRegistrations.length
+      };
     } catch (error) {
       console.error('Error getting all registrations:', error);
       throw error;
